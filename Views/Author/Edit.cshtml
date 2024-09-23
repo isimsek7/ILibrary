@@ -1,0 +1,35 @@
+﻿@using BookInfoApp.ViewModels;
+@model AuthorViewModel
+
+<h2>Edit Author</h2>
+
+<form asp-action="Edit" method="post">
+    @* Hidden field for the Id *@
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Full Name</label>
+        <input type="text" asp-for="FullName" class="form-control" required />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Date of Birth</label>
+        <input type="date" asp-for="DateOfBirth" class="form-control" required />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="List" class="btn btn-secondary">Cancel</a>
+</form>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

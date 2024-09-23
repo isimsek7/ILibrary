@@ -1,0 +1,54 @@
+﻿@using BookInfoApp.ViewModels
+@using BookInfoApp.Entities
+@model BookViewModel
+
+<h2>Create Book</h2>
+
+<form asp-controller="Book" asp-action="Create" method="post">
+    <input type="hidden" name="AuthorId" value="@ViewBag.NextAuthorId" />
+    <div class="mb-3">
+        <label>Book Title</label>
+        <input type="text" asp-for="Title" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Genre</label>
+        <input type="text" asp-for="Genre" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Publish Date</label>
+        <input type="date" asp-for="PublishDate" required />
+    </div>
+
+    <div class="mb-3">
+        <label>ISBN</label>
+        <input type="text" asp-for="ISBN" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Copies Available</label>
+        <input type="number" asp-for="CopiesAvailable" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Cover Image URL</label>
+        <input type="text" asp-for="CoverImageUrl" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Book</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+

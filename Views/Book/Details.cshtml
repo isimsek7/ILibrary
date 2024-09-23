@@ -1,0 +1,18 @@
+﻿@using BookInfoApp.ViewModels;
+@model BookViewModel
+    <div class="card" style="width: 18rem;">
+        <img src="@Model.CoverImageUrl" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Title:@Model.Title</h5>
+            <h5 class="card-title">Id:@Model.Id</h5>
+            <h5 class="card-title">Author Id:@Model.AuthorId</h5>
+            <h5 class="card-title">Author:@Model.AuthorName</h5>
+            <h5 class="card-title">@Model.CopiesAvailable :Copies Available</h5>
+            <h5 class="card-title">Image Url:@Model.CoverImageUrl</h5>
+            <h5 class="card-title">ISBN:@Model.ISBN</h5>
+            <h5 class="card-title">Pusblish Date:@Model.PublishDate</h5>
+            <h5 class="card-title">Genre:@Model.Genre</h5>
+
+            <a asp-controller="Book" asp-action="List" class="btn btn-success">Return back!</a>
+        </div>
+    </div>

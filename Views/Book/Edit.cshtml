@@ -1,0 +1,57 @@
+﻿@using BookInfoApp.ViewModels
+@model BookViewModel
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label for="bookTitle" class="form-label">Book Title</label>
+        <input type="text" class="form-control" id="bookTitle" asp-for="Title" />
+    </div>
+
+    <div class="mb-3">
+        <label for="AuthorId" class="form-label">Author Name</label>
+        <select class="form-select" asp-for="AuthorId" asp-items="ViewBag.Authors">
+            <option value="">Select an author</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="genre" class="form-label">Genre</label>
+        <input type="text" class="form-control" id="genre" asp-for="Genre" />
+    </div>
+
+    <div class="mb-3">
+        <label for="publishDate" class="form-label">Publish Date</label>
+        <input type="date" class="form-control" id="publishDate" asp-for="PublishDate" />
+    </div>
+
+    <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input type="text" class="form-control" id="isbn" asp-for="ISBN" />
+    </div>
+
+    <div class="mb-3">
+        <label for="copiesAvailable" class="form-label">Copies Available</label>
+        <input type="number" class="form-control" id="copiesAvailable" asp-for="CopiesAvailable" />
+    </div>
+
+    <div class="mb-3">
+        <label for="coverImageUrl" class="form-label">Image Url</label>
+        <input type="text" class="form-control" id="coverImageUrl" asp-for="CoverImageUrl" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
